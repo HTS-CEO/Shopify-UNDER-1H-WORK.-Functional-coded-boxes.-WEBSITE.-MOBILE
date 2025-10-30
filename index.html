@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Supplement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--primary: #0A0E27;
+--accent: #6366F1;
+--light: #F8FAFC;
+--success: #10B981;
+--gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+background: var(--light);
+color: var(--primary);
+max-width: 480px;
+margin: 0 auto;
+overflow-x: hidden;
+}
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+@keyframes slideIn {
+from {
+opacity: 0;
+transform: translateX(-20px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+@keyframes scaleIn {
+from {
+opacity: 0;
+transform: scale(0.9);
+}
+to {
+opacity: 1;
+transform: scale(1);
+}
+}
+@keyframes shimmer {
+0% {
+background-position: -1000px 0;
+}
+100% {
+background-position: 1000px 0;
+}
+}
+.animate-fade {
+animation: fadeInUp 0.8s ease-out forwards;
+}
+.animate-slide {
+animation: slideIn 0.6s ease-out forwards;
+}
+.header {
+padding: 20px;
+text-align: center;
+background: linear-gradient(180deg, #ffffff 0%, rgba(248,250,252,0) 100%);
+position: sticky;
+top: 0;
+z-index: 100;
+backdrop-filter: blur(10px);
+animation: fadeInUp 0.6s ease-out;
+}
+.btn-group {
+display: flex;
+gap: 12px;
+justify-content: center;
+}
+.btn {
+background: var(--primary);
+color: white;
+border: none;
+border-radius: 50px;
+padding: 14px 32px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+letter-spacing: 0.3px;
+}
+.btn::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 0;
+height: 0;
+border-radius: 50%;
+background: rgba(255,255,255,0.2);
+transform: translate(-50%, -50%);
+transition: width 0.6s, height 0.6s;
+}
+.btn:hover::before {
+width: 300px;
+height: 300px;
+}
+.btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+.btn-outline {
+background: white;
+color: var(--primary);
+border: 2px solid var(--primary);
+}
+.btn-outline:hover {
+background: var(--primary);
+color: white;
+}
+.product-section {
+padding: 0 20px 20px;
+animation: scaleIn 0.8s ease-out 0.2s backwards;
+}
+.product-image {
+width: 100%;
+height: 400px;
+border-radius: 30px;
+overflow: hidden;
+position: relative;
+box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.product-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-image:hover img {
+transform: scale(1.05);
+}
+.dots {
+display: flex;
+justify-content: center;
+gap: 8px;
+padding: 20px;
+}
+.dot {
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #cbd5e1;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.dot.active {
+width: 24px;
+border-radius: 10px;
+background: var(--accent);
+}
+.benefits {
+padding: 30px 20px;
+animation: fadeInUp 0.8s ease-out 0.3s backwards;
+}
+.benefits h3 {
+font-size: 24px;
+margin-bottom: 24px;
+font-weight: 700;
+background: var(--gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.benefit-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+}
+.benefit-item {
+background: white;
+padding: 16px;
+border-radius: 16px;
+font-size: 13px;
+font-weight: 500;
+transition: all 0.3s ease;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.benefit-item::before {
+content: "✦";
+color: var(--accent);
+font-size: 16px;
+}
+.benefit-item:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 24px rgba(99, 102, 241, 0.2);
+}
+.cta-section {
+padding: 20px;
+text-align: center;
+animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+.btn-large {
+width: 100%;
+padding: 18px;
+font-size: 16px;
+margin-bottom: 12px;
+}
+.btn-gradient {
+background: var(--gradient);
+color: white;
+border: none;
+position: relative;
+overflow: hidden;
+}
+.btn-gradient::after {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: left 0.5s;
+}
+.btn-gradient:hover::after {
+left: 100%;
+}
+.health-badges {
+display: flex;
+justify-content: center;
+gap: 12px;
+padding: 30px 20px;
+flex-wrap: wrap;
+animation: fadeInUp 0.8s ease-out 0.5s backwards;
+}
+.badge {
+padding: 12px 24px;
+background: white;
+border-radius: 30px;
+font-size: 13px;
+font-weight: 600;
+box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+color: var(--primary);
+}
+.badge:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+background: var(--gradient);
+color: white;
+}
+.solution-section {
+padding: 40px 30px;
+margin: 20px;
+background: white;
+border-radius: 30px;
+box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+animation: fadeInUp 0.8s ease-out 0.6s backwards;
+position: relative;
+overflow: hidden;
+}
+.solution-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: var(--gradient);
+}
+.solution-section h2 {
+font-size: 26px;
+margin-bottom: 16px;
+font-weight: 800;
+line-height: 1.3;
+}
+.solution-section p {
+font-size: 15px;
+line-height: 1.8;
+color: #64748b;
+font-weight: 400;
+}
+.facts-section {
+padding: 30px 20px;
+animation: fadeInUp 0.8s ease-out 0.7s backwards;
+}
+.facts-section h3 {
+font-size: 24px;
+margin-bottom: 24px;
+text-align: center;
+font-weight: 700;
+}
+.facts-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 16px;
+}
+.fact-card {
+background: white;
+border-radius: 20px;
+padding: 24px;
+min-height: 180px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+transition: all 0.4s ease;
+position: relative;
+}
+.fact-card::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 3px;
+background: var(--gradient);
+transform: scaleX(0);
+transition: transform 0.4s ease;
+}
+.fact-card:hover::after {
+transform: scaleX(1);
+}
+.fact-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+.fact-card h4 {
+font-size: 32px;
+margin-bottom: 16px;
+background: var(--gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+font-weight: 800;
+}
+.fact-list {
+list-style: none;
+font-size: 12px;
+line-height: 2;
+color: #64748b;
+}
+.fact-list li {
+position: relative;
+padding-left: 16px;
+}
+.fact-list li::before {
+content: "→";
+position: absolute;
+left: 0;
+color: var(--accent);
+font-weight: 600;
+}
+.founders-note {
+padding: 30px;
+background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+color: white;
+border-radius: 25px;
+margin: 30px 20px;
+box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+animation: fadeInUp 0.8s ease-out 0.8s backwards;
+position: relative;
+overflow: hidden;
+}
+.founders-note::before {
+content: '"';
+position: absolute;
+top: 20px;
+left: 20px;
+font-size: 80px;
+opacity: 0.1;
+font-family: Georgia, serif;
+}
+.founders-note h3 {
+font-size: 20px;
+margin-bottom: 16px;
+font-weight: 700;
+}
+.founders-note p {
+font-size: 15px;
+line-height: 1.7;
+opacity: 0.9;
+font-style: italic;
+}
+.progress-section {
+padding: 30px 20px;
+animation: fadeInUp 0.8s ease-out 0.9s backwards;
+}
+.progress-section h3 {
+font-size: 20px;
+margin-bottom: 12px;
+font-weight: 700;
+}
+.progress-labels {
+font-size: 12px;
+margin-bottom: 12px;
+color: #64748b;
+font-weight: 500;
+}
+.progress-bar {
+width: 100%;
+height: 40px;
+background: #e2e8f0;
+border-radius: 20px;
+position: relative;
+overflow: hidden;
+box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+width: 30%;
+border-radius: 20px;
+position: relative;
+transition: width 1s ease;
+animation: shimmer 2s infinite;
+background-size: 200% 100%;
+}
+.progress-text {
+font-size: 13px;
+margin-top: 8px;
+text-align: center;
+font-weight: 600;
+color: var(--accent);
+}
+.email-section {
+padding: 30px 20px;
+text-align: center;
+animation: fadeInUp 0.8s ease-out 1s backwards;
+}
+.email-section h3 {
+font-size: 24px;
+margin-bottom: 16px;
+font-weight: 700;
+}
+.email-input {
+width: 100%;
+padding: 16px 24px;
+border: 2px solid #e2e8f0;
+border-radius: 50px;
+font-size: 15px;
+margin-top: 12px;
+transition: all 0.3s ease;
+background: white;
+font-weight: 500;
+}
+.email-input:focus {
+outline: none;
+border-color: var(--accent);
+box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+transform: translateY(-2px);
+}
+.faq-section {
+padding: 30px 20px;
+animation: fadeInUp 0.8s ease-out 1.1s backwards;
+}
+.faq-section h3 {
+font-size: 24px;
+margin-bottom: 24px;
+text-align: center;
+font-weight: 700;
+}
+.faq-item {
+background: white;
+border-radius: 16px;
+padding: 20px;
+margin-bottom: 12px;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.faq-item:hover {
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+transform: translateX(4px);
+}
+.faq-item h4 {
+font-size: 15px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-weight: 600;
+}
+.faq-item h4 span {
+width: 24px;
+height: 24px;
+background: var(--gradient);
+color: white;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+transition: transform 0.3s ease;
+}
+.faq-item.active h4 span {
+transform: rotate(45deg);
+}
+.faq-item p {
+font-size: 14px;
+margin-top: 12px;
+display: none;
+line-height: 1.7;
+color: #64748b;
+}
+.faq-item.active p {
+display: block;
+animation: fadeInUp 0.4s ease;
+}
+.pagination {
+display: flex;
+justify-content: center;
+gap: 8px;
+padding: 20px;
+}
+.page-btn {
+width: 40px;
+height: 40px;
+border: none;
+background: white;
+cursor: pointer;
+font-size: 13px;
+font-weight: 600;
+border-radius: 10px;
+transition: all 0.3s ease;
+box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.page-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.page-btn.active {
+background: var(--gradient);
+color: white;
+}
+.checkout-buttons {
+display: flex;
+flex-direction: column;
+gap: 12px;
+padding: 20px;
+animation: fadeInUp 0.8s ease-out 1.2s backwards;
+}
+.checkout-btn {
+padding: 18px;
+border-radius: 50px;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+border: none;
+transition: all 0.4s ease;
+position: relative;
+overflow: hidden;
+}
+.priority-checkout {
+background: var(--gradient);
+color: white;
+}
+.quick-checkout {
+background: white;
+color: var(--primary);
+border: 2px solid var(--primary);
+}
+.paypal-btn {
+background: #ffc439;
+color: var(--primary);
+}
+.checkout-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.credit-card-box {
+background: white;
+border: 2px dashed #cbd5e1;
+border-radius: 20px;
+padding: 40px 20px;
+margin: 20px;
+text-align: center;
+font-size: 15px;
+color: #94a3b8;
+font-weight: 500;
+transition: all 0.3s ease;
+}
+.credit-card-box:hover {
+border-color: var(--accent);
+background: #f8fafc;
+}
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(10, 14, 39, 0.8);
+backdrop-filter: blur(8px);
+z-index: 1000;
+animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+.modal.active {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.modal-content {
+background: white;
+width: 90%;
+max-width: 420px;
+max-height: 80vh;
+border-radius: 30px;
+padding: 40px 30px;
+position: relative;
+overflow-y: auto;
+box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-content::-webkit-scrollbar {
+width: 6px;
+}
+.modal-content::-webkit-scrollbar-track {
+background: #f1f5f9;
+border-radius: 10px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+background: var(--gradient);
+border-radius: 10px;
+}
+.modal-close {
+position: absolute;
+top: 20px;
+right: 20px;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+background: #f1f5f9;
+border: none;
+font-size: 24px;
+cursor: pointer;
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.modal-close:hover {
+background: var(--gradient);
+color: white;
+transform: rotate(90deg);
+}
+.modal-content h2 {
+font-size: 26px;
+margin-bottom: 24px;
+font-weight: 800;
+background: var(--gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.modal-content p {
+font-size: 14px;
+line-height: 1.8;
+margin-bottom: 16px;
+color: #64748b;
+}
+.ingredient-item {
+padding: 16px;
+background: #f8fafc;
+border-radius: 12px;
+margin-bottom: 12px;
+border-left: 3px solid var(--accent);
+}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="btn-group">
+<button class="btn">Preorder</button>
+<button class="btn btn-outline" onclick="openIngredientsModal()">Ingredients</button>
+</div>
+</div>
+<div class="product-section">
+<div class="product-image">
+<img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="Premium Supplements">
+</div>
+<div class="dots">
+<span class="dot active"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
+</div>
+</div>
+<div class="benefits">
+<h3>What You Will Get</h3>
+<div class="benefit-grid">
+<div class="benefit-item">Antioxidant</div>
+<div class="benefit-item">Fish Oil</div>
+<div class="benefit-item">B Complex</div>
+<div class="benefit-item">Magnesium</div>
+<div class="benefit-item">Vitamin D</div>
+<div class="benefit-item">To Last May</div>
+<div class="benefit-item">Collagen</div>
+<div class="benefit-item">Amino Acids</div>
+</div>
+</div>
+<div class="cta-section">
+<button class="btn btn-large btn-gradient">Preorder Now</button>
+<button class="btn btn-large btn-outline">Enter Giveaway</button>
+</div>
+<div class="health-badges">
+<div class="badge">GUT Health</div>
+<div class="badge">Heart Health</div>
+<div class="badge">Immune Support</div>
+</div>
+<div class="solution-section">
+<h2>We Are All-in-One Solution</h2>
+<p>With 84+ premium ingredients for a reasonable price. We promise daily protection and a money-back guarantee.</p>
+</div>
+<div class="facts-section">
+<h3>Honest Facts About UK Supplementation</h3>
+<div class="facts-grid">
+<div class="fact-card">
+<h4>1</h4>
+<ul class="fact-list">
+<li>Quality varies widely</li>
+<li>Many are underdosed</li>
+<li>Hidden fillers</li>
+<li>Poor absorption</li>
+<li>Misleading labels</li>
+</ul>
+</div>
+<div class="fact-card">
+<h4>2</h4>
+<ul class="fact-list">
+<li>Overpriced products</li>
+<li>Marketing over science</li>
+<li>No transparency</li>
+<li>False claims</li>
+<li>No third-party testing</li>
+</ul>
+</div>
+<div class="fact-card">
+<h4>3</h4>
+<ul class="fact-list">
+<li>Synthetic ingredients</li>
+<li>Poor sourcing</li>
+<li>Environmental impact</li>
+<li>Unethical practices</li>
+<li>No traceability</li>
+</ul>
+</div>
+<div class="fact-card">
+<h4>4</h4>
+<ul class="fact-list">
+<li>One-size-fits-all</li>
+<li>Outdated formulas</li>
+<li>No innovation</li>
+<li>Limited research</li>
+<li>Poor customer support</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="founders-note">
+<h3>Founder's Note</h3>
+<p>Where my journey started, what helped me and how long it took to create the perfect all-in-one solution for optimal health.</p>
+</div>
+<div class="progress-section">
+<h3>Our Progress</h3>
+<p class="progress-labels">Orders → Functional → $5B Goal</p>
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+<p class="progress-text">30% Complete</p>
+</div>
+<div class="email-section">
+<h3>Enter A Giveaway</h3>
+<input type="email" class="email-input" placeholder="Enter Your Best Email">
+</div>
+<div class="faq-section">
+<h3>Frequently Asked Questions</h3>
+<div class="faq-item" onclick="toggleFaq(this)">
+<h4>What makes this different from other supplements? <span>+</span></h4>
+<p>Our formula contains 84+ premium ingredients in optimal doses, third-party tested, and backed by scientific research.</p>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<h4>How long until I see results? <span>+</span></h4>
+<p>Most customers report feeling more energized within 2-3 weeks, with optimal benefits appearing after 60-90 days of consistent use.</p>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<h4>Is there a money-back guarantee? <span>+</span></h4>
+<p>Yes! We offer a 60-day money-back guarantee. If you're not satisfied, we'll refund your purchase, no questions asked.</p>
+</div>
+<div class="faq-item" onclick="toggleFaq(this)">
+<h4>Are there any side effects? <span>+</span></h4>
+<p>Our supplements are made with natural, high-quality ingredients and are generally well-tolerated. Always consult your doctor before starting any new supplement.</p>
+</div>
+</div>
+<div class="pagination">
+<button class="page-btn active">01</button>
+<button class="page-btn">02</button>
+<button class="page-btn">03</button>
+<button class="page-btn">04</button>
+<button class="page-btn">05</button>
+</div>
+<div class="checkout-buttons">
+<button class="checkout-btn priority-checkout">Priority Checkout</button>
+<button class="checkout-btn quick-checkout">Quick Checkout</button>
+<button class="checkout-btn paypal-btn">Shop with PayPal</button>
+</div>
+<div class="credit-card-box">
+💳 Secure Credit Card Payment
+</div>
+<div style="text-align: center; padding: 40px 20px; font-size: 13px; color: #94a3b8;">
+Trusted by 10,000+ customers worldwide
+</div>
+<div class="modal" id="ingredientsModal">
+<div class="modal-content">
+<button class="modal-close" onclick="closeIngredientsModal()">&times;</button>
+<h2>Premium Ingredients</h2>
+<div class="ingredient-item">
+<strong>Vitamin D3 (5000 IU)</strong>
+<p>Supports immune function, bone health, and mood regulation. Essential for calcium absorption.</p>
+</div>
+<div class="ingredient-item">
+<strong>Omega-3 Fish Oil (2000mg)</strong>
+<p>Promotes heart health, reduces inflammation, and supports brain function.</p>
+</div>
+<div class="ingredient-item">
+<strong>Magnesium Glycinate (400mg)</strong>
+<p>Improves sleep quality, muscle recovery, and nervous system function.</p>
+</div>
+<div class="ingredient-item">
+<strong>B-Complex Vitamins</strong>
+<p>Boosts energy production, supports metabolism, and enhances cognitive function.</p>
+</div>
+<div class="ingredient-item">
+<strong>Collagen Peptides (10g)</strong>
+<p>Supports skin elasticity, joint health, and gut lining integrity.</p>
+</div>
+<div class="ingredient-item">
+<strong>Essential Amino Acids</strong>
+<p>Building blocks for muscle protein synthesis and tissue repair.</p>
+</div>
+<div class="ingredient-item">
+<strong>Antioxidant Blend</strong>
+<p>Protects cells from oxidative stress and supports healthy aging.</p>
+</div>
+<div class="ingredient-item">
+<strong>Probiotic Complex</strong>
+<p>Supports gut health, digestion, and immune system balance.</p>
+</div>
+<p style="margin-top: 20px; font-style: italic;">...and 76+ more premium ingredients carefully selected for optimal synergy and absorption.</p>
+</div>
+</div>
+<script>
+function openIngredientsModal() {
+document.getElementById('ingredientsModal').classList.add('active');
+document.body.style.overflow = 'hidden';
+}
+function closeIngredientsModal() {
+document.getElementById('ingredientsModal').classList.remove('active');
+document.body.style.overflow = '';
+}
+function toggleFaq(element) {
+element.classList.toggle('active');
+}
+document.getElementById('ingredientsModal').addEventListener('click', function(e) {
+if (e.target === this) {
+closeIngredientsModal();
+}
+});
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, observerOptions);
+document.querySelectorAll('.benefit-item, .fact-card, .faq-item').forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(20px)';
+el.style.transition = 'all 0.6s ease';
+observer.observe(el);
+});
+let currentSlide = 0;
+const dots = document.querySelectorAll('.dot');
+dots.forEach((dot, index) => {
+dot.addEventListener('click', () => {
+dots.forEach(d => d.classList.remove('active'));
+dot.classList.add('active');
+currentSlide = index;
+});
+});
+document.querySelectorAll('.btn, .checkout-btn').forEach(btn => {
+btn.addEventListener('click', function(e) {
+let ripple = document.createElement('span');
+ripple.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,0.6);width:20px;height:20px;animation:ripple 0.6s ease-out;pointer-events:none;';
+let x = e.clientX - this.offsetLeft;
+let y = e.clientY - this.offsetTop;
+ripple.style.left = x + 'px';
+ripple.style.top = y + 'px';
+this.appendChild(ripple);
+setTimeout(() =>
